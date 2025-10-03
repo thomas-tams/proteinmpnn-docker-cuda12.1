@@ -1,0 +1,33 @@
+# Input/Output directories
+input/
+output/
+test_*/
+
+# Docker build cache
+.dockerignore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Logs
+*.log
