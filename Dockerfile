@@ -22,8 +22,8 @@ RUN git clone https://github.com/dauparas/ProteinMPNN.git /app/ProteinMPNN && \
     cd /app/ProteinMPNN && \
     git checkout 8907e6671bfbfc92303b5f79c4b5e6ce47cdef57
 
-# Add ProteinMPNN to PATH so scripts can be called directly
-ENV PATH="/app/ProteinMPNN:${PATH}"
+# Add ProteinMPNN and helper_scripts to PATH so scripts can be called directly
+ENV PATH="/app/ProteinMPNN:/app/ProteinMPNN/helper_scripts:${PATH}"
 
 # Set working directory to ProteinMPNN
 WORKDIR /app/ProteinMPNN
