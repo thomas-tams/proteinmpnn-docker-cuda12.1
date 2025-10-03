@@ -17,32 +17,10 @@ RUN pip install --no-cache-dir \
     numpy \
     scipy
 
-# Clone ProteinMPNN repository
-RUN git clone https://github.com/dauparas/ProteinMPNN.git /app/ProteinMPNN
-
-# Download vanilla model weights
-RUN cd /app/ProteinMPNN/vanilla_model_weights && \
-    wget -q https://files.ipd.uw.edu/pub/ProteinMPNN/model_weights/v_48_002.pt && \
-    wget -q https://files.ipd.uw.edu/pub/ProteinMPNN/model_weights/v_48_010.pt && \
-    wget -q https://files.ipd.uw.edu/pub/ProteinMPNN/model_weights/v_48_020.pt && \
-    wget -q https://files.ipd.uw.edu/pub/ProteinMPNN/model_weights/v_48_030.pt && \
-    echo "Downloaded vanilla models:" && \
-    ls -lh /app/ProteinMPNN/vanilla_model_weights/*.pt
-
-# Download soluble model weights
-RUN cd /app/ProteinMPNN/soluble_model_weights && \
-    wget -q https://files.ipd.uw.edu/pub/ProteinMPNN/soluble_model_weights/v_48_010.pt && \
-    wget -q https://files.ipd.uw.edu/pub/ProteinMPNN/soluble_model_weights/v_48_020.pt && \
-    echo "Downloaded soluble models:" && \
-    ls -lh /app/ProteinMPNN/soluble_model_weights/*.pt
-
-# Download CA-only model weights
-RUN cd /app/ProteinMPNN/ca_model_weights && \
-    wget -q https://files.ipd.uw.edu/pub/ProteinMPNN/ca_model_weights/v_48_002.pt && \
-    wget -q https://files.ipd.uw.edu/pub/ProteinMPNN/ca_model_weights/v_48_010.pt && \
-    wget -q https://files.ipd.uw.edu/pub/ProteinMPNN/ca_model_weights/v_48_020.pt && \
-    echo "Downloaded CA-only models:" && \
-    ls -lh /app/ProteinMPNN/ca_model_weights/*.pt
+# Clone ProteinMPNN repository and checkout specific commit for reproducibility
+RUN git clone https://github.com/dauparas/ProteinMPNN.git /app/ProteinMPNN && \
+    cd /app/ProteinMPNN && \
+    git checkout 8907e6671bfbfc92303b5f79c4b5e6ce47cdef57
 
 # Set working directory to ProteinMPNN
 WORKDIR /app/ProteinMPNN
